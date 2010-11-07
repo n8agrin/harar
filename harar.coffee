@@ -1,6 +1,6 @@
 sys = require 'sys'
 http = require 'http'
-sha = require './sha1v2.js'
+sha = require './sha1.js'
 
 # Sanity check
 # twitter_secret = "MCD8BKwGdgPHvAuvgvz4EQpqDAtx89grbuNMRd7Eh98"
@@ -83,10 +83,6 @@ class OAuth
   nonce: (timestamp)->
     sha.hex_sha1(timestamp || (new Date).getTime())
 
-try
-  o = new OAuth({})
-catch e
-  sys.puts e
-sys.puts(o)
-# o.step1_request_token()
+
+exports.OAuth = OAuth  if exports?
 
